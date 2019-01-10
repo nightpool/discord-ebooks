@@ -10,10 +10,8 @@ class WithSymbols(markovify.Text):
       for i in re.split(self.word_split_pattern, sentence)
     ]
 
-
 class NewlineTextWithSymbols(WithSymbols, markovify.NewlineText):
   pass
-
 
 async def collect(async_iter):
   ret = []
@@ -28,7 +26,7 @@ model = None
 @client.event
 async def on_ready():
   global model
-  model = NewlineTextWithSymbols(await collect(content_for('bettertowns')), retain_original=False)
+  model = NewlineTextWithSymbols(await collect(content_for('nightpool')), retain_original=False)
   open('model', 'w').write(model.to_json())
   # model = NewlineTextWithSymbols.from_json(open('model').read())
   print('ready')
