@@ -1,8 +1,9 @@
 import discord, asyncio, json, markovify, sys, random, re
 
 class WithSymbols(markovify.Text):
+  yikes_re = re.compile(r'kill')
   def test_sentence_input(self, sentence):
-    return True
+    return not re.search(self.yikes_re, sentence)
   
   def word_split(self, sentence):
     return [
